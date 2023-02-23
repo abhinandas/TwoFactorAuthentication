@@ -1,0 +1,24 @@
+﻿@{
+    ViewData["Title"] = "Home Page";
+}
+
+<div class="text-center">
+    <h1 class="display-4">Welcome @CurrentUser.SignedInUser?.Email</h1>
+    @if (CurrentUser.SignedInUser == null)
+    {
+        <a href="/home/login">Sign in</a>
+    }
+    else
+    {
+        <a href="/home/logout">Sign out</a><br/>
+
+        @if (CurrentUser.SignedInUser.TwoFactorEnabled)
+        {
+            <a href="/TwoFactorAuth/Disable">Disable two-factor</a>
+        }
+        else
+        {
+            <a href="/TwoFactorAuth/Enable">Enable two-factor</a>
+        }
+    }
+</div>
